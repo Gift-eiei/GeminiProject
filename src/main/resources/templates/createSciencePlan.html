@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+
+    <title>CreateSciencePlan</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/CreateSciencePlan}">Create Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/TestSciencePlan}">Test Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/VirtualTelescope}">Interactive Observing Operation</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/SubmitSciencePlan}">Submit Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/ValidateSciencePlan}">Validate Science Plan</a>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br>
+            <div class="alert alert-info" th:text="${success}" th:if="${success}">
+            </div>
+            <div class="alert alert-danger" th:text="${fail}" th:if="${fail}">
+            </div>
+            <br>
+            <h1>Science Plan Information</h1>
+            <br>
+            <form th:action="@{/CreateSciencePlan}" th:object="${SciencePlan}" method="post">
+
+                <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                   th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+                    error</p>
+
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('planNo')}? 'has-error':''">
+                    <label for="planNo" class="control-label">Plan No.</label> <input
+                        id="planNo" class="form-control" th:field="*{planNo}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('planNo')}"
+                       th:text="${error}">Validation Error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('creator')}? 'has-error':''">
+                    <label for="creator" class="control-label">Creator</label> <input
+                        id="creator" class="form-control" th:field="*{creator}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('creator')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('submitter')}? 'has-error':''">
+                    <label for="submiiter" class="control-label">Submitter</label> <input
+                        id="submiiter" class="form-control" th:field="*{submitter}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('submitter')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('fundingInUSD')}? 'has-error':''">
+                    <label for="fundingInUSD" class="control-label">Funding</label> <input
+                        id="fundingInUSD" class="form-control" th:field="*{fundingInUSD}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('fundingInUSD')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('objectives')}? 'has-error':''">
+                    <label for="objectives" class="control-label">Objectives</label> <input
+                        id="objectives" class="form-control" th:field="*{objectives}"/>
+                    <p class="error-message"
+                       th:each="error:  ${#fields.errors('objectives')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+
+                <!--Start Date-->
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('startDate')}? 'has-error':''">
+                    <label for="startDate" class="control-label">Start Date</label> <input
+                        id="startDate" type="date" class="form-control" th:field="*{startDate}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('startDate')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <!--End Date-->
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('endDate')}? 'has-error':''">
+                    <label for="startDate" class="control-label">End Date</label> <input
+                        id="endDate" type="date" class="form-control" th:field="*{endDate}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('endDate')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('starSystem')}? 'has-error':''">
+                    <p class="control-label">Star System</p>
+                    <select name="starSystem">
+                        <option th:each=" star: ${T(com.example.Project.Controller.Object.SciencePlanObj.TARGET).values()}"
+                                th:value="${star}" th:text="${star.starSystem}"></option>
+                    </select>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('starSystem')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('telescopeLocation')}? 'has-error':''">
+                    <p class="control-label"> Telescope Location</p>
+                    <select name="telescopeLocation">
+                        <option th:each=" telescopeLocation: ${T(com.example.Project.Controller.Object.SciencePlanObj.TELESCOPELOC).values()}"
+                                th:value="${telescopeLocation}" th:text="${telescopeLocation.telescope}"></option>
+                    </select>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('telescopeLocation')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('fileType')}? 'has-error':''">
+                    <p class="control-label">File Type</p>
+                    <select name="fileType">
+                        <option th:each="fileType : ${T(com.example.Project.Controller.Object.SciencePlanObj.TYPE).values()}"
+                                th:value="${fileType}" th:text="${fileType.type}"></option>
+                    </select>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('fileType')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('fileQuality')}? 'has-error':''">
+                    <label for="fileQuality" class="control-label">File Quality</label> <input
+                        id="fileQuality" class="form-control" th:field="*{fileQuality}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('fileQuality')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('colorType')}? 'has-error':''">
+                    <p class="control-label">Color Type</p>
+                    <select name="colorType">
+                        <option th:each="color: ${T(com.example.Project.Controller.Object.SciencePlanObj.COLOR_TYPE).values()}"
+                                th:value="${color}" th:text="${color}"></option>
+                    </select>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('colorType')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('contrast')}? 'has-error':''">
+                    <label for="contrast" class="control-label">Contrast</label> <input
+                        id="contrast" class="form-control" th:field="*{contrast}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('contrast')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('brightness')}? 'has-error':''">
+                    <label for="brightness" class="control-label">Brightness</label> <input
+                        id="brightness" class="form-control" th:field="*{brightness}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('brightness')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('saturation')}? 'has-error':''">
+                    <label for="saturation" class="control-label">Saturation</label> <input
+                        id="saturation" class="form-control" th:field="*{saturation}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('saturation')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

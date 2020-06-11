@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Validate Submitted Science Plan</title>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/CreateSciencePlan}">Create Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/TestSciencePlan}">Test Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/VirtualTelescope}">Interactive Observing Operation</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/SubmitSciencePlan}">Submit Science Plan</a>
+
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/ValidateSciencePlan}">Validate Science Plan</a>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br>
+            <br>
+            <h1>Verify Science Plan Information</h1>
+            <br>
+            <br>
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="'Plan No.: ' + ${S.planNo}"></li>
+                    <li class="list-group-item" th:text="'Creator: ' + ${S.creator}"></li>
+                    <li class="list-group-item" th:text="'Submitter: ' + ${S.submitter}"></li>
+                    <li class="list-group-item" th:text="'Submitter: ' + ${S.fundingInUSD}"></li>
+                    <li class="list-group-item" th:text="'Objectives: ' + ${S.objectives}"></li>
+                    <li class="list-group-item" th:text="'Star System: ' + ${S.starSystem}"></li>
+                    <li class="list-group-item" th:text="'Start Date: ' + ${S.startDate}"></li>
+                    <li class="list-group-item" th:text="'End Date: ' + ${S.endDate}"></li>
+                    <li class="list-group-item" th:text="'Status: ' + ${S.telescopeLocation}"></li>
+                    <li class="list-group-item" th:text="'Status: ' + ${S.status}"></li>
+                    <li class="list-group-item" th:text="'File Type: ' + ${S.fileType}"></li>
+                    <li class="list-group-item" th:text="'File Quality: ' + ${S. fileQuality}"></li>
+                    <li class="list-group-item" th:text="'Color Type: ' + ${S.colorType}"></li>
+                    <li class="list-group-item" th:text="'Contrast: ' + ${S.contrast}"></li>
+                    <li class="list-group-item" th:text="'Brightness: ' + ${S.brightness}"></li>
+                    <li class="list-group-item" th:text="'Saturation: ' + ${S.saturation}"></li>
+                    <br>
+                    <br>
+                    <a th:href="@{/ValidateSciencePlan/Approve/{getId}(getId=${S.SciencePlanID})} "
+                       class="btn btn-primary">Approve</a>
+                    <a th:href="@{/ValidateSciencePlan/NotApprove/{getId}(getId=${S.SciencePlanID})}"
+                       class="btn btn-secondary">Disapprove</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

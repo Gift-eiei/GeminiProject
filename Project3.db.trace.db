@@ -1,0 +1,12 @@
+2563-06-11 20:26:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE OBSEVING PROGRAM[*] (OBSERVINGID INTEGER NOT NULL, SCIENCE_OBSERVERID INTEGER NOT NULL, IS_LIGHT_DETECTOR_ON BOOLEAN NOT NULL, SUBMITTEDID INTEGER NOT NULL, PRIMARY KEY (OBSERVINGID))"; SQL statement:
+create table obseving program (observingid integer not null, science_observerid integer not null, is_light_detector_on boolean not null, submittedid integer not null, primary key (observingid)) [42000-200]
+2563-06-11 20:26:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE SCIENCE PLAN[*] (SCIENCE_PLANID INTEGER NOT NULL, ASTRONOMERID INTEGER NOT NULL, BRIGHTNESS DOUBLE NOT NULL, COLOR_TYPE INTEGER, CONTRAST DOUBLE NOT NULL, CREATOR VARCHAR(255), END_DATE TIMESTAMP, FILE_QUALITY DOUBLE NOT NULL, FILE_TYPE INTEGER, FUNDING_INUSD DOUBLE NOT NULL, OBJECTIVES VARCHAR(255), PLAN_NO INTEGER NOT NULL, SATURATION DOUBLE NOT NULL, STAR_SYSTEM INTEGER, START_DATE TIMESTAMP, STATUS INTEGER, SUBMITTER VARCHAR(255), TELESCOPE_LOCATION INTEGER, VALIDATE INTEGER, PRIMARY KEY (SCIENCE_PLANID))"; SQL statement:
+create table science plan (science_planid integer not null, astronomerid integer not null, brightness double not null, color_type integer, contrast double not null, creator varchar(255), end_date timestamp, file_quality double not null, file_type integer, funding_inusd double not null, objectives varchar(255), plan_no integer not null, saturation double not null, star_system integer, start_date timestamp, status integer, submitter varchar(255), telescope_location integer, validate integer, primary key (science_planid)) [42000-200]
+2563-06-11 20:26:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE SUBMITTED SCIENCE[*] PLAN (SUBMITTEDID INTEGER NOT NULL, SCIENCE_PLANID INTEGER NOT NULL, PRIMARY KEY (SUBMITTEDID))"; SQL statement:
+create table submitted science plan (submittedid integer not null, science_planid integer not null, primary key (submittedid)) [42000-200]
+2563-06-11 20:26:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE VIRTUAL TELESCOPE[*] (TELESCOPEID INTEGER NOT NULL, SCIENCE_PLANID INTEGER NOT NULL, STATUS VARCHAR(255), PRIMARY KEY (TELESCOPEID))"; SQL statement:
+create table virtual telescope (telescopeid integer not null, science_planid integer not null, status varchar(255), primary key (telescopeid)) [42000-200]
