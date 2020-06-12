@@ -112,12 +112,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-<!--
+
         <dependency>
             <groupId>groupId</groupId>
             <artifactId>jparsec</artifactId>
             <version>1.0</version>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 
